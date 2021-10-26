@@ -181,7 +181,8 @@ typedef enum
 /* Description: Enumeration to hold internal resistor type for PIN */
 typedef enum
 {
-	OFF, PULL_UP, 
+	OFF,
+	PULL_UP, 
         PULL_DOWN
 }Port_InternalResistor;
 
