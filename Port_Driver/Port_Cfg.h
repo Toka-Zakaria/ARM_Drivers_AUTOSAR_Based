@@ -79,7 +79,6 @@
 
 #define PORT_PIN_DEFAULT_INTERNAL_RESISTOR               (OFF)
 
-#define PORT_PIN_DEFAULT_ANALOG_DIGITAL                (digital)
 /*
  * Define Port Pins
  */
