@@ -369,8 +369,11 @@ void Port_Init( const Port_ConfigType* ConfigPtr )
 					/*Open alternative function register by 1 as it is ADC mode*/
 					SET_BIT(*(volatile uint32 *)((volatile uint8 *)Port_Ptr + PORT_ALT_FUNC_REG_OFFSET) , current_pinNumber);
 
-					/*No need to enter the mode number in the control register in PMCx bits for this pin as it is configured as analog pin*/
-
+					/*
+					 Clear the PMCx bits for this pin 
+				         it is the same mode number for DIO but it will work in ADC mode as PMCx bits for this pin is configured as analog pin
+					 */
+					*(volatile uint32 *)((volatile uint8 *)Port_Ptr + PORT_PCTL_REG_OFFSET) &= ~(0x0000000F << (current_pinNumber * BITS_NUMBER));
 					break;
 
 				default:
@@ -1304,8 +1307,11 @@ void Port_SetPinMode( Port_PinType Pin,
 				/*Open alternative function register by 1 as it is ADC mode*/
 				SET_BIT(*(volatile uint32 *)((volatile uint8 *)Port_setModePtr + PORT_ALT_FUNC_REG_OFFSET) , Pin);
 
-				/*No need to enter the mode number in the control register in PMCx bits for this pin as it configured as analog pin*/
-
+				/*
+			         Clear the PMCx bits for this pin 
+				 it is the same mode number for DIO but it will work in ADC mode as PMCx bits for this pin is configured as analog pin
+				*/
+				*(volatile uint32 *)((volatile uint8 *)Port_setModePtr + PORT_PCTL_REG_OFFSET) &= ~(0x0000000F << (Pin * BITS_NUMBER));
 				break;
 
 			default:
