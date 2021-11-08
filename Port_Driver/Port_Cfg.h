@@ -48,8 +48,8 @@
 * Important Note: According to ADC mode:
 * You can define it with any value except:
 * Used values for other modes in TM4C123GH6PM (except values "14 & (0-->9)"), 
-* The number of mode in ADC won't affect in PCTL Register 
-* The pin will be configured as analog pin and it will understand it is ADC mode
+* Clear the PMCx bits in PCTL Register the same as DIO but it will work in ADC 
+* The pin will work in ADC nit DIO as it will be configured as analog pin and it will understand it is ADC mode
 */
 #define PORT_PIN_MODE_ADC                         (10U)
 #define PORT_PIN_MODE_CAN
